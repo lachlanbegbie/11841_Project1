@@ -1,28 +1,120 @@
 /* @import */
-
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 /* Variable Storage */
 :root {
-    
+    --off-black: #454545;
+    --background: #fffbf4;
+    --element: #f6eee1;
 }
 
 /* Root Definitions */
 body {
+    font-family: 'Lora', serif;
+    font-size: 16px;
+    
+    background-color: var(--background);
+    color: var(--off-black);
+    padding: 0vh 4vh 4vh 4vh;
+}
 
+header {
+    height: 10vh;
+    padding-left: 1em;
+
+    display: flex;
+    align-items: center;
 }
 
 h1 {
-
+    font-family: 'Quattrocento Sans', sans-serif;
+    font-size: 2em;
+    font-weight: 700;
 }
 
 h2 {
-
+    font-size: 1.3em;
+    font-weight: 500;
 }
 
 h3 {
+    font-size: 1.1em;
+    font-weight: 500;
 
+    padding-bottom: 0.5em;
 }
 
 p {
+    line-height: 1.5;
+}
 
+#content {
+    height: 86vh;
+    /* padding: 0em 2em 2em 2em; */
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    column-gap: 1.5em;
+    row-gap: 1.5em;
+
+    grid-template-areas: 'day day blank blank gallery gallery gallery'
+                         'day day blank blank gallery gallery gallery'
+                         'day day other locate locate locate locate'
+                         'day day other locate locate locate locate'
+                         'day day other locate locate locate locate';
+}
+
+#content .element {
+    padding: 2em;
+    border-radius: 2em;
+
+    background-color: var(--element);
+    overflow-y: scroll;    
+}
+
+.day {
+    grid-area: day;
+}
+
+.blank {
+    grid-area: blank;
+}
+
+.gallery {
+    grid-area: gallery;
+}
+
+.other {
+    grid-area: other;
+}
+
+.locate {
+    grid-area: locate;
+}
+
+.elementHeader{
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 1.5em;
+}
+
+.dayRecord {
+    border-top: 1.5px var(--off-black) solid;
+
+    padding: 1em 0.8em;
+}
+
+.dayRecord:hover {
+    background-color: var(--background);
+}
+
+.bottomRecord {
+    border-bottom: 1.5px var(--off-black) solid;
+}
+
+.recordSummary {
+    text-align: justify;
 }
