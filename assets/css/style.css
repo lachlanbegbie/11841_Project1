@@ -12,7 +12,7 @@
 /* Root Definitions */
 body {
     font-family: 'Lora', serif;
-    font-size: 16px;
+    font-size: 13.5px;
     
     background-color: var(--background);
     color: var(--off-black);
@@ -29,13 +29,21 @@ header {
 
 h1 {
     font-family: 'Quattrocento Sans', sans-serif;
-    font-size: 2em;
+    font-size: 4em;
     font-weight: 700;
+    
+    color: rgba(0, 0, 0, 0);
+    
+    background-image: url("../img/logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: left;
 }
 
 h2 {
     font-size: 1.3em;
     font-weight: 500;
+    line-height: 1.2em;
 }
 
 h3 {
@@ -45,13 +53,30 @@ h3 {
     padding-bottom: 0.5em;
 }
 
+h4 {
+    font-size: 0.9em;
+    font-weight: 400;
+
+    padding-top: 0.7em;
+}
+
 p {
     line-height: 1.5;
 }
 
+a {
+    text-decoration: none;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+
+    box-shadow: 5px 1px 25px -14px rgba(0, 0, 0, 0.6) inset;
+}
+
 #content {
     height: 86vh;
-    /* padding: 0em 2em 2em 2em; */
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -67,7 +92,7 @@ p {
 }
 
 #content .element {
-    padding: 2em;
+    padding: 2em 0em;
     border-radius: 2em;
 
     background-color: var(--element);
@@ -92,19 +117,45 @@ p {
 
 .locate {
     grid-area: locate;
+    display: flex;
+    padding: 0!important;
 }
 
 .elementHeader{
     display: flex;
     justify-content: space-between;
 
+    padding: 0em 2em;
     margin-bottom: 1.5em;
 }
 
-.dayRecord {
-    border-top: 1.5px var(--off-black) solid;
+/* Gallery */
 
-    padding: 1em 0.8em;
+.photos {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 'one two two three three four';
+    column-gap: 0.7em;
+
+    /* padding-top: 1em; */
+}
+
+.picture {
+    background-color: white;
+    height: 100%;
+}
+
+.photos :first-child {
+    background-color: white;
+}
+
+/* On This Day */
+
+.dayRecord {
+    /* border-top: 1.5px var(--off-black) solid; */
+
+    padding: 1.3em 2em;
 }
 
 .dayRecord:hover {
@@ -112,9 +163,38 @@ p {
 }
 
 .bottomRecord {
-    border-bottom: 1.5px var(--off-black) solid;
+    /* border-bottom: 1.5px var(--off-black) solid; */
 }
 
 .recordSummary {
+    text-align: justify;
+}
+
+/* Location Search */
+
+.sidebar {
+    width: 32%;
+
+    overflow-y: scroll;
+}
+
+.sidebarTitle {
+    padding: 1.5em 0.5em 1em 1.5em;
+}
+
+.map {
+    width: 68%;
+    background-color: #a3bff4;
+}
+
+.placeRecord {
+    padding: 1em 1em 1em 2em;
+}
+
+.placeRecord:hover {
+    background-color: var(--background);
+}
+
+.dayRecordSummary {
     text-align: justify;
 }
