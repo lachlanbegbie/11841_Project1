@@ -123,12 +123,20 @@ iframe {
     padding: 0!important;
 }
 
-.elementHeader{
+/* #elementHeader{
     display: flex;
     justify-content: space-between;
 
     padding: 0em 2em;
     margin-bottom: 1.5em;
+} */
+
+.elementHeader {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 0em 2em;
+    margin-bottom: 1em;
 }
 
 /* Gallery */
