@@ -7,6 +7,9 @@
     --off-black: #454545;
     --background: #fffbf4;
     --element: #f6eee1;
+    --nmablue: #3e8c92;
+    --nmaback: #f4fbff;
+    --nmablueback: #dce2e7;
 }
 
 /* Root Definitions */
@@ -34,7 +37,7 @@ h1 {
     
     color: rgba(0, 0, 0, 0);
     
-    background-image: url("../img/logo.png");
+    background-image: url("../img/logo2.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position-x: left;
@@ -81,20 +84,20 @@ iframe {
     height: 86vh;
 
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     column-gap: 1.5em;
     row-gap: 1.5em;
 
-    grid-template-areas: 'day day blank blank gallery gallery gallery'
-                         'day day blank blank gallery gallery gallery'
-                         'day day other locate locate locate locate'
-                         'day day other locate locate locate locate'
-                         'day day other locate locate locate locate';
+    grid-template-areas: 'day day day other other locate gallery gallery'
+                         'day day day other other locate gallery gallery'
+                         'day day day place place place gallery gallery'
+                         'day day day place place place gallery gallery'
+                         'day day day place place place gallery gallery';
 }
 
 #content .element {
-    padding: 2em 0em;
+    padding: 0em 0em 2em 0em;
     border-radius: 2em;
 
     background-color: var(--element);
@@ -105,8 +108,8 @@ iframe {
     grid-area: day;
 }
 
-.blank {
-    grid-area: blank;
+.place {
+    grid-area: place;
 }
 
 .gallery {
@@ -119,8 +122,6 @@ iframe {
 
 .locate {
     grid-area: locate;
-    display: flex;
-    padding: 0!important;
 }
 
 /* #elementHeader{
@@ -135,17 +136,29 @@ iframe {
     display: flex;
     justify-content: space-between;
 
-    padding: 0em 2em;
-    margin-bottom: 1em;
+    padding: 2em 2em 1em 2em;
+    margin-bottom: 0.2em;
+
+    position: sticky;
+    top: 0;
+
+    background-color: var(--element);
+    z-index: 100;
+}
+
+/* Blocks */
+
+.blockBody {
+    padding: 0.3em 2em 0em 2em;
 }
 
 /* Gallery */
 
 .photos {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
-    grid-template-areas: 'one two two three three four';
+    grid-template-areas: 'one two';
     column-gap: 0.7em;
 
     /* padding-top: 1em; */
@@ -163,17 +176,26 @@ iframe {
 /* On This Day */
 
 .dayRecord {
-    /* border-top: 1.5px var(--off-black) solid; */
+    display: flex;
 
-    padding: 1.3em 2em;
+    align-items: center;
 }
 
 .dayRecord:hover {
     background-color: var(--background);
+    cursor: pointer;
 }
 
-.bottomRecord {
-    /* border-bottom: 1.5px var(--off-black) solid; */
+.dayRecordDes {
+    /* border-top: 1.5px var(--off-black) solid; */
+
+    width: 70%;
+    padding: 1.3em 2em;
+}
+
+.dayRecordImg {
+    padding: 0.5em 0em 0.5em 1em;
+    width: 25%;
 }
 
 .recordSummary {
@@ -187,29 +209,36 @@ iframe {
 
 /* Location Search */
 
-.sidebar {
-    width: 32%;
+.searchBar {
+    height: 2.5em;
+    width: 90%;
 
-    overflow-y: scroll;
+    font-size: 1.1em;
+    font-family: 'Quattrocento Sans', sans-serif;
+
+    padding: 0em 1.6em;
+    margin-bottom: 1em;
+
+    box-shadow: 3px 3px 13px -2px rgba(0,0,0,0.3);
+    border: none;
+    border-radius: 2em;
 }
 
-.sidebarTitle {
-    padding: 1.5em 0.5em 1em 1.5em;
+.placeRecordImg {
+    padding: 0.5em 0em 0.5em 1.5em;
+    width: 15%;
 }
 
-.map {
-    width: 68%;
-    background-color: #a3bff4;
+.placeRecordSummary {
+    /* text-align: justify; */
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-.placeRecord {
-    padding: 1em 1em 1em 2em;
-}
-
-.placeRecord:hover {
-    background-color: var(--background);
-}
-
-.dayRecordSummary {
-    text-align: justify;
+.noResults {
+    padding: 0.5em 4em;
+    text-align: center;
 }

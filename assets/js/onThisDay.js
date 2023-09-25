@@ -33,33 +33,38 @@ async function getDateItem() {
         // console.log(dateCode);
         
 
-        const nmaDate = "https://data.nma.gov.au/object?limit=5&temporal=" + dateCode + "&format=simple";
+        const nmaDate = "https://data.nma.gov.au/object?limit=8&temporal=" + dateCode + "&format=simple";
 
 
         // Get data and add records from NMA
-        const response = await fetch(nmaDate);
-        const data = await response.json();
+        const responseDate = await fetch(nmaDate);
+        const dataDate = await responseDate.json();
 
         // console.log(data);
 
-        data.data.forEach(item => {
+        dataDate.data.forEach(item => {
             // console.log(item);
 
             const title = "Item " + item.id + ": " + item.title;
             const description = item.physicalDescription;
+            const image = "assets/img/whitesquare.png";
             // console.log(title);
+            console.log(image);
 
             const containerItem = document.createElement('div');
             containerItem.className = "dayRecord";
 
+
+            const divImg = `<img src="${image}" class="dayRecordImg">`
             const divTitle = `<h3>${title}</h3>`;
             const divDes = `<p class="recordSummary">${description}</p>`;
 
-            containerItem.innerHTML = divTitle + divDes;
+            containerItem.innerHTML = `${divImg} <div class="dayRecordDes"> ${divTitle} ${divDes} </div>`;
 
             onThisDay.appendChild(containerItem);
         });
 
+        // // See more button here
     } catch (error) {
         console.log('error: ', error);
     }
