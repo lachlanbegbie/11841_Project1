@@ -30,10 +30,10 @@ async function getDateItem() {
         // Create a 'date code' to input back into the NMA API call
         dateCode = day + " " + getMonthName(month);
         // dateCode = `${(month + 1)}-${day}`;
-        // console.log(dateCode);
-        
+         console.log(dateCode);
 
-        const nmaDate = "https://data.nma.gov.au/object?limit=8&temporal=" + dateCode + "&format=simple";
+
+        const nmaDate = "https://data.nma.gov.au/object?limit=30&temporal=" + dateCode + "&format=simple";
 
 
         // Get data and add records from NMA
@@ -43,25 +43,38 @@ async function getDateItem() {
         // console.log(data);
 
         dataDate.data.forEach(item => {
-            console.log(item);
 
-            const title = "Item " + item.id + ": " + item.title;
-            const description = item.physicalDescription;
-            const image = "assets/img/whitesquare.png";
-            // console.log(title);
-            console.log(image);
+						//check to see if they 'hasversion'
+						if (item.hasVersion != null) {
 
-            const containerItem = document.createElement('div');
-            containerItem.className = "dayRecord";
+							// the image thing is very bizarre.
+							// I can see there are other images in the meta field,
+							// but they don't seem to be retrievable via this API
+							console.log(item.hasVersion[0].hasVersion[0]);
+
+							//BEN: you should include the date for each item too, or at least the year so we can see how it relates
+
+							const title = "Item " + item.id + ": " + item.title;
+							const description = item.physicalDescription;
+							const image = item.hasVersion[0].hasVersion[0].identifier;
+							// const image = "assets/img/whitesquare.png";
+							// console.log(title);
+							console.log(image);
+
+							const containerItem = document.createElement('div');
+							containerItem.className = "dayRecord";
 
 
-            const divImg = `<img src="${image}" class="dayRecordImg">`
-            const divTitle = `<h3>${title}</h3>`;
-            const divDes = `<p class="recordSummary">${description}</p>`;
+							const divImg = `<img src="${image}" class="dayRecordImg">`
+							const divTitle = `<h3>${title}</h3>`;
+							const divDes = `<p class="recordSummary">${description}</p>`;
 
-            containerItem.innerHTML = `${divImg} <div class="dayRecordDes"> ${divTitle} ${divDes} </div>`;
+							containerItem.innerHTML = `${divImg} <div class="dayRecordDes"> ${divTitle} ${divDes} </div>`;
 
-            onThisDay.appendChild(containerItem);
+							onThisDay.appendChild(containerItem);
+						} //close if
+
+
         });
 
         // // See more button here
