@@ -43,7 +43,7 @@ async function getDateItem() {
         // console.log(data);
 
         dataDate.data.forEach(item => {
-            // console.log(item);
+            console.log(item);
 
             const title = "Item " + item.id + ": " + item.title;
             const description = item.physicalDescription;

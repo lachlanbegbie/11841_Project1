@@ -14,7 +14,7 @@ async function getPlaceItem() {
     try {
         console.log(placeInputValue);
         
-        const nmaPlace = "https://data.nma.gov.au/object?limit=3&spatial=" + placeInputValue + "&format=simple&apikey=" + apikey;
+        const nmaPlace = "https://data.nma.gov.au/object?limit=5&spatial=" + placeInputValue + "&format=simple&apikey=" + apikey;
 
 
         // Get data and add records from NMA
@@ -24,14 +24,6 @@ async function getPlaceItem() {
         console.log(dataPlace);
 
         if (dataPlace.meta.results == 0) {
-            // if (inThisPlace.childNodes.length == 3) {
-            //     inThisPlace.removeChild(inThisPlace.lastChild);
-            // } else if (inThisPlace.childNodes.length > 3) {
-            //     for (let i = 0 ; i < inThisPlace.childNodes.length - 2; i++) {
-            //         inThisPlace.removeChild(inThisPlace.lastChild);
-            //     }
-            // }
-
             while (inThisPlace.childElementCount > 1) {
                 inThisPlace.removeChild(inThisPlace.lastChild);
             }
@@ -43,14 +35,6 @@ async function getPlaceItem() {
 
             inThisPlace.appendChild(containerItem);
         } else {
-            // if (inThisPlace.childNodes.length == 3) {
-            //     inThisPlace.removeChild(inThisPlace.lastChild);
-            // } else if (inThisPlace.childNodes.length > 3) {
-            //     for (let i = 0 ; i < inThisPlace.childNodes.length - 3; i++) {
-            //         inThisPlace.removeChild(inThisPlace.lastChild);
-            //     }
-            // }
-
             while (inThisPlace.childElementCount > 1) {
                 inThisPlace.removeChild(inThisPlace.lastChild);
             }
