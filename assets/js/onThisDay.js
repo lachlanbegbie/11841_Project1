@@ -15,7 +15,7 @@ async function getDateItem() {
         const year = d.getFullYear();
 
         // find the string name of the current month
-        function getMonthName(month) {return d.toLocaleString([], { month: 'long' });}
+        function getMonthName(month) {return d.toLocaleString([], {month: 'long'});}
 
         // compile date into string and place in DOM
         const dateItem = document.createElement('div');
@@ -40,17 +40,10 @@ async function getDateItem() {
 
         // how many items which have no image are displayed
         let noImgCount = 0;
+        let hasImageCount = 0;
 
+        //check if image
         dataDate.data.forEach(item => {
-            // console.log(item);
-
-            // returns the year of the item
-            const itemYear = item.temporal[0].startDate.slice(0,4);
-
-            // builds the body of text
-            const title = "Item " + item.id + ": " + item.title;
-            const description = item.physicalDescription;
-
             if (item.hasVersion != null) {
                 // image of item
                 const img = item.hasVersion[0].hasVersion;
@@ -58,19 +51,46 @@ async function getDateItem() {
                 
                 for (i=0; i < img.length; i++) {
                     if (img[i].version === 'large image') {
-                        image = img[i].identifier;
+                        item.imageURL = img[i].identifier;
                     }
                 }
+                item.hasImage = true;
 
+            } else  {
+                item.hasImage = false;
+            };
+        });
+
+        // sort array if the item 'hasImage'
+        const sortedArray = dataDate.data.sort((a, b) => {
+            // Assuming 'image' is a boolean property
+            console.log(a.hasImage);
+            return a.hasImage - b.hasImage;
+        });
+        sortedArray.reverse();
+        // console.log(sortedArray);
+
+
+        sortedArray.forEach(item => {
+            // returns the year of the item
+            const itemYear = item.temporal[0].startDate.slice(0,4);
+
+            // builds the body of text
+            const title = "Item " + item.id + ": " + item.title;
+            const description = item.physicalDescription;
+
+            if (item.hasImage == true && hasImageCount < 5) {
+                hasImageCount++;
                 // push compiled element (from createElement function) into the page
-                onThisDay.appendChild(createElement(image, itemYear, title, description));
+                onThisDay.appendChild(createElement(item.imageURL, itemYear, title, description));
             } else if (noImgCount < 4 && onThisDay.childElementCount < 6) {
                 image = null;
+                item.image = false
                 noImgCount++;
                 
                 // push compiled element (from createElement function) into the page
                 onThisDay.appendChild(createElement(image, itemYear, title, description));
-            }
+            };
         });
 
         // // See more button here?
