@@ -16,7 +16,6 @@ async function getPlaceItem() {
         
         const nmaPlace = "https://data.nma.gov.au/object?limit=5&spatial=" + placeInputValue + "&format=simple&apikey=" + apikey;
 
-
         // Get data and add records from NMA
         const responsePlace = await fetch(nmaPlace);
         const dataPlace = await responsePlace.json();
