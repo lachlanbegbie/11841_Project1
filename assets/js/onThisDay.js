@@ -63,8 +63,7 @@ async function getDateItem() {
 
         // sort array if the item 'hasImage'
         const sortedArray = dataDate.data.sort((a, b) => {
-            // Assuming 'image' is a boolean property
-            console.log(a.hasImage);
+            // console.log(a.hasImage);
             return a.hasImage - b.hasImage;
         });
         sortedArray.reverse();
