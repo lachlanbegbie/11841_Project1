@@ -21,44 +21,75 @@ async function getPlaceItem() {
         const responsePlace = await fetch(nmaPlace);
         const dataPlace = await responsePlace.json();
 
-        console.log(dataPlace);
+        // all values pulled from API
+            // console.log(dataPlace);
 
-        if (dataPlace.meta.results == 0) {
+        // how many items which have no image are displayed
+        let noImgPlace = 0;
+        let hasImagePlace = 0;
+
+        //check if image
+        dataPlace.data.forEach(item => {
+            if (item.hasVersion != null) {
+                // image of item
+                const img = item.hasVersion[0].hasVersion;
+                // const image = item.hasVersion[0].hasVersion[0].identifier;
+                
+                for (i=0; i < img.length; i++) {
+                    if (img[i].version === 'large image') {
+                        item.imageURL = img[i].identifier;
+                    }
+                }
+                item.hasImage = true;
+
+            } else  {
+                item.hasImage = false;
+            };
+        });
+
+        // sort array if the item 'hasImage'
+        const sortedPlace = dataPlace.data.sort((a, b) => {
+            // console.log(a.hasImage);
+            return a.hasImage - b.hasImage;
+        });
+        sortedPlace.reverse();
+        // console.log(sortedPlace);
+
+        if (sortedPlace.length == 0) {
             while (inThisPlace.childElementCount > 1) {
                 inThisPlace.removeChild(inThisPlace.lastChild);
             }
-
+    
             const noResults = `<p class="noResults">No Results Found: Either no results available, or incorrect spelling.</p>`
-
+    
             const containerItem = document.createElement('div');
             containerItem.innerHTML = noResults;
-
+    
             inThisPlace.appendChild(containerItem);
         } else {
             while (inThisPlace.childElementCount > 1) {
                 inThisPlace.removeChild(inThisPlace.lastChild);
             }
             
-            dataPlace.data.forEach(item => {
+            sortedPlace.forEach(item => {
                 // console.log(item);
     
                 const title = item.title;
                 const description = item.physicalDescription;
-                const image = "assets/img/whitesquare.png";
-                // console.log(title);
-                console.log(image);
-    
-                const containerItem = document.createElement('div');
-                containerItem.className = "dayRecord";
-    
-    
-                const divImg = `<img src="${image}" class="placeRecordImg">`
-                const divTitle = `<h3>${title}</h3>`;
-                const divDes = `<p class="placeRecordSummary">${description}</p>`;
-    
-                containerItem.innerHTML = `${divImg} <div class="dayRecordDes"> ${divTitle} ${divDes} </div>`;
-    
-                inThisPlace.appendChild(containerItem);
+                
+                if (item.hasImage == true && hasImagePlace < 5) {
+                    hasImagePlace++;
+                    // push compiled element (from createElement function) into the page
+                    inThisPlace.appendChild(createPlaceElement(item.imageURL, title, description));
+                    console.log(item.imageURL);
+                } else if (noImgPlace < 4 && inThisPlace.childElementCount < 6) {
+                    image = null;
+                    item.image = false
+                    noImgPlace++;
+                    
+                    // push compiled element (from createElement function) into the page
+                    inThisPlace.appendChild(createPlaceElement(image, title, description));
+                };
             });
         }
 
@@ -69,3 +100,23 @@ async function getPlaceItem() {
 
 // Call the function so it executes
 // getPlaceItem()
+
+function createPlaceElement(image, title, description) {
+    // create element in DOM
+    const containerItem = document.createElement('div');
+    containerItem.className = "dayRecord";
+
+    // declare each element for item
+    const divTitle = `<h3>${title}</h3>`;
+    const divDes = `<p class="recordSummary">${description}</p>`;
+    
+    // compiles elements depending on image present
+    if (image != null) {
+        const divImg = `<img src="${image}" class="placeRecordImg">`;
+        containerItem.innerHTML = `${divImg} <div class="dayRecordDes">${divTitle} ${divDes} </div>`;
+    } else {
+        containerItem.innerHTML = `<div class="dayRecordDes">${divTitle} ${divDes} </div>`;
+    }
+
+    return containerItem;
+}
