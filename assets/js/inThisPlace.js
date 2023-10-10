@@ -55,6 +55,7 @@ async function getPlaceItem() {
         sortedPlace.reverse();
         // console.log(sortedPlace);
 
+
         if (sortedPlace.length == 0) {
             while (inThisPlace.childElementCount > 1) {
                 inThisPlace.removeChild(inThisPlace.lastChild);
@@ -82,7 +83,7 @@ async function getPlaceItem() {
                     // push compiled element (from createElement function) into the page
                     inThisPlace.appendChild(createPlaceElement(item.imageURL, title, description));
                     console.log(item.imageURL);
-                } else if (noImgPlace < 4 && inThisPlace.childElementCount < 6) {
+                } else if (noImgPlace < 5 && inThisPlace.childElementCount < 6) {
                     image = null;
                     item.image = false
                     noImgPlace++;

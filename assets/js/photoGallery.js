@@ -1,12 +1,12 @@
 
 async function photoGalleryItems() {
-    const inThisPlace = document.getElementById('photoGallery');
+    const photoGallery = document.getElementById('photoGallery');
 
     try {
-        randomOffset = Math.floor(Math.random() * 300);
+        randomOffset = Math.floor(Math.random() * 5000);
         console.log(randomOffset);
 
-        const nmaGallery = "https://data.nma.gov.au/object?limit=15&offset=" + randomOffset + "&format=simple";
+        const nmaGallery = "https://data.nma.gov.au/object?limit=15&text=*&media=*&offset=" + randomOffset + "&format=simple";
 
         // Get data and add records from NMA
         const responseGallery = await fetch(nmaGallery);
@@ -15,6 +15,26 @@ async function photoGalleryItems() {
         // all values pulled from API
             console.log(dataGallery);
 
+        dataGallery.data.forEach(item => {
+            if (item.hasVersion != null) {
+                // image of item
+                const img = item.hasVersion[0].hasVersion;
+                // const image = item.hasVersion[0].hasVersion[0].identifier;
+                
+                for (i=0; i < img.length; i++) {
+                    if (img[i].version === 'large image') {
+                        item.imageURL = img[i].identifier;
+                    }
+                }
+                
+                const containerItem = document.createElement('div');
+                containerItem.className = "galleryImage";
+
+                containerItem.innerHTML = `<img src="${item.imageURL}" class="innerImage">`;
+
+                photoGallery.appendChild(containerItem);
+            }
+        })
 
     } catch (error) {
         console.log('error: ', error);

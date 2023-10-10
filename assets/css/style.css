@@ -245,21 +245,15 @@ a {
 /* Gallery */
 /*  */
 
-.photos {
+.photoGallery {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: 'one two';
-    column-gap: 0.7em;
-
-    /* padding-top: 1em; */
 }
 
-.picture {
-    background-color: white;
-    height: 100%;
+.galleryImage {
+    max-width: 50%;
 }
 
-.photos :first-child {
-    background-color: white;
+.innerImage {
+    max-width: 100%;
 }
