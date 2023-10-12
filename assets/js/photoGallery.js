@@ -6,7 +6,7 @@ async function photoGalleryItems() {
         randomOffset = Math.floor(Math.random() * 5000);
         console.log(randomOffset);
 
-        const nmaGallery = "https://data.nma.gov.au/object?limit=15&text=*&media=*&offset=" + randomOffset + "&format=simple";
+        const nmaGallery = "https://data.nma.gov.au/object?limit=8&text=*&media=*&offset=" + randomOffset + "&format=simple";
 
         // Get data and add records from NMA
         const responseGallery = await fetch(nmaGallery);
@@ -15,6 +15,8 @@ async function photoGalleryItems() {
         // all values pulled from API
             console.log(dataGallery);
 
+        const count = 0;
+        
         dataGallery.data.forEach(item => {
             if (item.hasVersion != null) {
                 // image of item

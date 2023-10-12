@@ -5,9 +5,9 @@
 /* Variable Storage */
 :root {
     --off-black: #454545;
-    --background: #fffbf4;
-    --element: #f6eee1;
-    --element-shadow: #dbcbb2;
+    --background: #fbf5eb;
+    --element: #f0e8db;
+    --element-hover: #f4ede1;
 }
 
 /* Root Definitions */
@@ -156,7 +156,7 @@ a {
 }
 
 .dayRecord:hover {
-    background-color: var(--background);
+    background-color: var(--element-hover);
     cursor: pointer;
 }
 
@@ -245,15 +245,103 @@ a {
 /* Gallery */
 /*  */
 
-.photoGallery {
+#photoGallery {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    column-gap: 1em;
+    row-gap: 1em;
+
+    padding: 0em 2em;
+
+    vertical-align: middle;
 }
 
 .galleryImage {
-    max-width: 50%;
+    display: flex;
+    
+    max-width: 100%;
+    /* min-height: 9em;
+    max-height: 13em; */
+    aspect-ratio: 1 / 1;
+
+    /* align-self: center; */
+
+    /* overflow-y: hidden; */
 }
 
 .innerImage {
-    max-width: 100%;
+    max-width: 100%!important;
+    max-height: 100%!important;
+
+    /* background-color: #444444; */
+
+    object-fit: cover;
+    
+    box-shadow: 3px 3px 8px -2px rgba(0,0,0,0.4);
+}
+
+.innerImage:hover {
+    cursor: pointer;
+    opacity: 60%;
+}
+
+
+/*  */
+/* Modal */
+/*  */
+
+.modal {
+    background-color: rgb(0, 0, 0, 0.6);
+    
+    height: 100vh;
+    width: 100vw;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    z-index: 100;
+
+    
+}
+
+.modal-content {
+    background-color: var(--element);
+
+    width: 24vw;
+    height: 100vh;
+    float: right;
+
+    padding: 0em 3.5em;
+
+    overflow-y: scroll;
+}
+
+.modal h3 {
+    font-size: 1.5em;
+    padding-top: 2em;
+}
+
+.modal h4 {
+    font-size: 1.3em;
+    font-weight: 600;
+
+    padding: 1em 0em;
+}
+
+.modal img {
+    max-width: 90%;
+    margin: 1em 5%;
+
+    box-shadow: 3px 3px 8px -2px rgba(0,0,0,0.4);
+}
+
+.modal p {
+    text-indent: 2em;
+
+    padding-bottom: 2em;
+}
+
+.hidden {
+    display: none;
 }
