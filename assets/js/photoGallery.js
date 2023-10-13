@@ -4,7 +4,7 @@ async function photoGalleryItems() {
 
     try {
         randomOffset = Math.floor(Math.random() * 5000);
-        console.log(randomOffset);
+        // console.log(randomOffset);
 
         const nmaGallery = "https://data.nma.gov.au/object?limit=8&text=*&media=*&offset=" + randomOffset + "&format=simple";
 
@@ -13,12 +13,13 @@ async function photoGalleryItems() {
         const dataGallery = await responseGallery.json();
 
         // all values pulled from API
-            console.log(dataGallery);
-
-        const count = 0;
+            // console.log(dataGallery);
         
         dataGallery.data.forEach(item => {
             if (item.hasVersion != null) {
+                // insert item into array to return for modal
+                modalInfo.push([item.id, item]);
+
                 // image of item
                 const img = item.hasVersion[0].hasVersion;
                 // const image = item.hasVersion[0].hasVersion[0].identifier;
@@ -30,9 +31,12 @@ async function photoGalleryItems() {
                 }
                 
                 const containerItem = document.createElement('div');
-                containerItem.className = "galleryImage";
+                containerItem.className = "galleryImage expand";
 
                 containerItem.innerHTML = `<img src="${item.imageURL}" class="innerImage">`;
+
+                containerItem.setAttribute('modal-index', `${item.id}`);
+                containerItem.setAttribute('onClick', `openModal(${item.id})`);
 
                 photoGallery.appendChild(containerItem);
             }

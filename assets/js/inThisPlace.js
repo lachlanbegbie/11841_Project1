@@ -49,11 +49,9 @@ async function getPlaceItem() {
 
         // sort array if the item 'hasImage'
         const sortedPlace = dataPlace.data.sort((a, b) => {
-            // console.log(a.hasImage);
             return a.hasImage - b.hasImage;
         });
         sortedPlace.reverse();
-        // console.log(sortedPlace);
 
 
         if (sortedPlace.length == 0) {
@@ -73,7 +71,8 @@ async function getPlaceItem() {
             }
             
             sortedPlace.forEach(item => {
-                // console.log(item);
+                // insert item into array to return for modal
+                modalInfo.push([item.id, item]);
     
                 const title = item.title;
                 const description = item.physicalDescription;
@@ -81,7 +80,7 @@ async function getPlaceItem() {
                 if (item.hasImage == true && hasImagePlace < 5) {
                     hasImagePlace++;
                     // push compiled element (from createElement function) into the page
-                    inThisPlace.appendChild(createPlaceElement(item.imageURL, title, description));
+                    inThisPlace.appendChild(createPlaceElement(item.imageURL, title, description, item.id));
                     console.log(item.imageURL);
                 } else if (noImgPlace < 5 && inThisPlace.childElementCount < 6) {
                     image = null;
@@ -89,7 +88,7 @@ async function getPlaceItem() {
                     noImgPlace++;
                     
                     // push compiled element (from createElement function) into the page
-                    inThisPlace.appendChild(createPlaceElement(image, title, description));
+                    inThisPlace.appendChild(createPlaceElement(image, title, description, item.id));
                 };
             });
         }
@@ -102,10 +101,10 @@ async function getPlaceItem() {
 // Call the function so it executes
 // getPlaceItem()
 
-function createPlaceElement(image, title, description) {
+function createPlaceElement(image, title, description, modalIndex) {
     // create element in DOM
     const containerItem = document.createElement('div');
-    containerItem.className = "dayRecord";
+    containerItem.className = "dayRecord expand";
 
     // declare each element for item
     const divTitle = `<h3>${title}</h3>`;
@@ -118,6 +117,9 @@ function createPlaceElement(image, title, description) {
     } else {
         containerItem.innerHTML = `<div class="dayRecordDes">${divTitle} ${divDes} </div>`;
     }
+
+    containerItem.setAttribute('modal-index', `${modalIndex}`);
+    containerItem.setAttribute('onClick', `openModal(${modalIndex})`);
 
     return containerItem;
 }

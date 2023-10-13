@@ -4,10 +4,15 @@
 
 /* Variable Storage */
 :root {
+    --dark-off-black: #3d3d3d;
     --off-black: #454545;
-    --background: #fbf5eb;
+    /* --background: #fbf5eb;
     --element: #f0e8db;
-    --element-hover: #f4ede1;
+    --element-hover: #f4ede1; */
+
+    --background: #ebebeb;
+    --element: #d6d6d6;
+    --element-hover: #e0e0e0;
 }
 
 /* Root Definitions */
@@ -290,25 +295,33 @@ a {
 /* Modal */
 /*  */
 
-.modal {
+.background {
     background-color: rgb(0, 0, 0, 0.6);
-    
+
     height: 100vh;
     width: 100vw;
 
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
 
     z-index: 100;
+}
 
-    
+.modal {
+    color: var(--background);
+
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    z-index: 200;
 }
 
 .modal-content {
-    background-color: var(--element);
+    background-color: var(--dark-off-black);
 
-    width: 24vw;
+    width: 30vw;
     height: 100vh;
     float: right;
 
@@ -329,8 +342,14 @@ a {
     padding: 1em 0em;
 }
 
+.imgdiv {
+    display: flex;
+    justify-content: center;
+}
+
 .modal img {
     max-width: 90%;
+    max-height: 25em;
     margin: 1em 5%;
 
     box-shadow: 3px 3px 8px -2px rgba(0,0,0,0.4);
@@ -338,10 +357,39 @@ a {
 
 .modal p {
     text-indent: 2em;
+    line-height: 2.2;
+    
+    font-weight: 100;
 
     padding-bottom: 2em;
 }
 
 .hidden {
     display: none;
+}
+
+@keyframes moveoff {
+    0% {transform: translateX(0%);}
+    100% {transform: translateX(100%);}
+}
+
+@keyframes fadeout {
+    0% {opacity: 100%;}
+    100% {opacity: 0%;}
+}
+
+.moveoff {
+    animation: moveoff 0.5s;
+}
+
+.movein {
+    animation: moveoff 0.5s reverse;
+}
+
+.fadeout {
+    animation: fadeout 0.5s;
+}
+
+.fadein {
+    animation: fadeout 0.5s reverse;
 }

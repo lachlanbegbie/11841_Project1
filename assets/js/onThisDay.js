@@ -8,7 +8,7 @@ async function getDateItem() {
     const todayDate = document.getElementById('dateToday');
 
     try {
-        // get today's date split into day, month and year
+        // get today's date, split into day, month and year
         const d = new Date();
         const day = d.getDate();
         const month = d.getMonth();
@@ -44,6 +44,8 @@ async function getDateItem() {
 
         //check if image
         dataDate.data.forEach(item => {
+            // console.log(item);
+
             if (item.hasVersion != null) {
                 // image of item
                 const img = item.hasVersion[0].hasVersion;
@@ -80,15 +82,22 @@ async function getDateItem() {
 
             if (item.hasImage == true && hasImageCount < 5) {
                 hasImageCount++;
+
+                // insert item into array to return for modal
+                modalInfo.push([item.id, item]);
+
                 // push compiled element (from createElement function) into the page
-                onThisDay.appendChild(createElement(item.imageURL, itemYear, title, description));
+                onThisDay.appendChild(createElement(item.imageURL, itemYear, title, description, item.id));
             } else if (noImgCount < 4 && onThisDay.childElementCount < 6) {
                 image = null;
                 item.image = false
                 noImgCount++;
+
+                // insert item into array to return for modal
+                modalInfo.push([item.id, item]);
                 
                 // push compiled element (from createElement function) into the page
-                onThisDay.appendChild(createElement(image, itemYear, title, description));
+                onThisDay.appendChild(createElement(image, itemYear, title, description, item.id));
             };
         });
 
@@ -102,10 +111,10 @@ async function getDateItem() {
 getDateItem()
 
 
-function createElement(image, itemYear, title, description) {
+function createElement(image, itemYear, title, description, modalIndex) {
     // create element in DOM
     const containerItem = document.createElement('div');
-    containerItem.className = "dayRecord";
+    containerItem.className = "dayRecord expand";
     
     // declare each element for item
     const divTitle = `<h3>${itemYear} - ${title}</h3>`;
@@ -118,6 +127,9 @@ function createElement(image, itemYear, title, description) {
     } else {
         containerItem.innerHTML = `<div class="dayRecordDes">${divTitle} ${divDes} </div>`;
     }
+
+    containerItem.setAttribute('modal-index', `${modalIndex}`);
+    containerItem.setAttribute('onClick', `openModal(${modalIndex})`);
 
     return containerItem;
 }
