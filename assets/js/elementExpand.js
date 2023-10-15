@@ -21,24 +21,25 @@ async function fillModal(modalIndex) {
         const containerItem = document.createElement('div');
 
         const modalName = `${modalInfo[clickedItem][1].title}`;
-        const modalTitle = `<h3 class="modalh">Item ${modalIndex} -- "${modalName}"</h3>`
+        const modalTitle = `<h3 class="modalh">Item ${modalIndex} -- "${modalName}"</h3>`;
         
         let modalDate = '';
         
         const modalDesTitle = `<h4 class="modalsh">Description</h4>`;
         let modalDes = `<p class="modalp">${modalInfo[clickedItem][1].description}</p>`;
 
-        // const modalImg = `<img src="${modalInfo[clickedItem][1].imageURL}">`;
         let modalImg = '';
         let modalSigTitle = '';
         let modalSig = '';
         
         if (modalInfo[clickedItem][1].temporal != null) {
-            modalDes = `<p class="modalp">${modalInfo[clickedItem][1].physicalDescription}</p>`
+            modalDate = `<h4 class="modalsh">${modalInfo[clickedItem][1].temporal[0].title}</h4>`;
         }
 
         if (modalInfo[clickedItem][1].description == undefined) {
-            modalDes = `<p class="modalp">${modalInfo[clickedItem][1].physicalDescription}</p>`
+            modalDes = `<p class="modalp">${modalInfo[clickedItem][1].physicalDescription}</p>`;
+        } else if (modalInfo[clickedItem][1].physicalDescription == undefined) {
+            modalDes = `<p class="modalp">${modalInfo[clickedItem][1].title}</p>`;
         }
 
         if (modalInfo[clickedItem][1].hasVersion != null) {

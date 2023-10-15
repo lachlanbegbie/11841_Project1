@@ -6,13 +6,13 @@
 :root {
     --dark-off-black: #3d3d3d;
     --off-black: #454545;
-    /* --background: #fbf5eb;
+    --background: #fbf5eb;
     --element: #f0e8db;
-    --element-hover: #f4ede1; */
+    --element-hover: #f4ede1;
 
-    --background: #ebebeb;
+    /* --background: #ebebeb;
     --element: #d6d6d6;
-    --element-hover: #e0e0e0;
+    --element-hover: #e0e0e0; */
 }
 
 /* Root Definitions */
@@ -85,8 +85,12 @@ a {
     column-gap: 1.5em;
     row-gap: 1.5em;
 
-    grid-template-areas: 'day day day other other other gallery gallery'
-                         'day day day other other other gallery gallery'
+    /* grid-template-areas: 'day day day other other other gallery gallery'
+                         'day day day other other other gallery gallery' */
+
+    grid-template-areas: 'day day day place place place gallery gallery'
+                         'day day day place place place gallery gallery'
+
                          'day day day place place place gallery gallery'
                          'day day day place place place gallery gallery'
                          'day day day place place place gallery gallery';
@@ -336,7 +340,7 @@ a {
 }
 
 .modal h4 {
-    font-size: 1.3em;
+    font-size: 1.5em;
     font-weight: 600;
 
     padding: 1em 0em;
