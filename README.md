@@ -31,5 +31,26 @@ Ultimately, the final product didn't end up quite as feature full as I had origi
 
 ## References
 
-There were a number of websites, articles and sources I utilised for this project. The most common included Stack Overflow forums:
+*How to Wait 1 Second in JavaScript.* (n.d.). Mastering JS. [https://masteringjs.io/tutorials/fundamentals/wait-1-second-then](https://masteringjs.io/tutorials/fundamentals/wait-1-second-then)
+
+Ibaba, T. (2022, July 21). *How to Convert a Month Number to a Name in JavaScript.* Codingbeautydev.com. [https://codingbeautydev.com/blog/javascript-convert-month-number-to-name/](https://codingbeautydev.com/blog/javascript-convert-month-number-to-name/)
+
+
+Mozilla. (n.d.). *MDN Web Docs.* MDN Web Docs. [https://developer.mozilla.org/en-US/](https://developer.mozilla.org/en-US/)
+
+Node.removeChild() - Web APIs | MDN. (n.d.). Developer.mozilla.org. [https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild](https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild)
+
+
+National Museum of Australia (n.d.) *National Museum of Australia - API Explorer.* [https://www.nma.gov.au/about/our-collection/museum-api/collection-explorer](https://www.nma.gov.au/about/our-collection/museum-api/collection-explorer)
+
+Olawanlet, J. (2023, January 17). *JavaScript 2D Array – Two Dimensional Arrays in JS.* FreeCodeCamp.org. [https://www.freecodecamp.org/news/javascript-2d-arrays/](https://www.freecodecamp.org/news/javascript-2d-arrays/)
+
+OpenAI (2023) ChatGPT (Sep 25 Version)[Large Language Model] [https://chat.openai.com/chat](https://chat.openai.com/chat)
+
+
+StackOverFlow. (n.d.). *Stack Overflow - Where Developers Learn, Share, & Build Careers.* Stack Overflow. [https://stackoverflow.com](https://stackoverflow.com)
+
+"Anbarasan" (2015, Apr 13) *Remove child node except first using javascript* Stack Overflow [https://stackoverflow.com/questions/29603059/remove-child-node-except-first-using-javascript/76901133#76901133](https://stackoverflow.com/questions/29603059/remove-child-node-except-first-using-javascript/76901133#76901133)
+
+"Trevor" (2013, Jan 26) *Event Listener Enter Key* Stack Overflow [https://stackoverflow.com/questions/14542062/eventlistener-enter-key](https://stackoverflow.com/questions/14542062/eventlistener-enter-key)
 
