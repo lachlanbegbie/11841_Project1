@@ -28,10 +28,12 @@ async function fillModal(modalIndex) {
         const modalDesTitle = `<h4 class="modalsh">Description</h4>`;
         let modalDes = `<p class="modalp">${modalInfo[clickedItem][1].description}</p>`;
 
+        // blank values to ensure no errors
         let modalImg = '';
         let modalSigTitle = '';
         let modalSig = '';
         
+        // fill the values based on what is available or not
         if (modalInfo[clickedItem][1].temporal != null) {
             modalDate = `<h4 class="modalsh">${modalInfo[clickedItem][1].temporal[0].title}</h4>`;
         }
@@ -66,6 +68,8 @@ async function fillModal(modalIndex) {
 async function openModal(modalIndex) {
     fillModal(modalIndex);
     
+    document.getElementById('body').classList.add('scrollFreeze');
+
     modal.classList.remove('hidden');
     modalBackground.classList.remove('hidden');
 
@@ -80,6 +84,8 @@ async function openModal(modalIndex) {
 
 
 async function closeModal() {
+    document.getElementById('body').classList.remove('scrollFreeze');
+    
     modal.classList.add('moveoff');
     modalBackground.classList.add('fadeout');
 

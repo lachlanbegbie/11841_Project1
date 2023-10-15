@@ -419,6 +419,9 @@ a {
     animation: fadeout 0.5s reverse;
 }
 
+.scrollFreeze {
+    overflow: hidden;
+}
 
 
 /*  */
@@ -468,9 +471,9 @@ a {
 
 @media screen and (max-width: 60em) {
     body {
-        margin-bottom: 5em;
+        margin-bottom: 0em;
     }
-
+    
     h1 {
         width: 100%;
         text-align: center;
@@ -525,7 +528,7 @@ a {
     }
 
     .modal-content {
-        width: 70vw;
+        width: 60vw;
     }
 
     .place {
@@ -534,6 +537,14 @@ a {
 }
 
 @media screen and (max-width: 40em) {
+    body {
+        font-size: 11.5px;
+    }
+
+    .menubutton {
+        font-size: 1em;
+    }
+    
     #photoGallery {
         grid-template-columns: 1fr 1fr;
     }
