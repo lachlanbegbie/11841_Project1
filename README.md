@@ -26,3 +26,10 @@ Implementing the modal which pops up for each item to provide more information w
 ### Reflection
 
 Ultimately, the final product didn't end up quite as feature full as I had originally hoped, but I am happy with the outcome, as many of my original ideas came through successfully, and provided a significant challenge which I overcame and learned from. While there is much more I would like to have done, the current state of development is satisfactory by my standards.
+
+
+
+## References
+
+There were a number of websites, articles and sources I utilised for this project. The most common included Stack Overflow forums:
+
